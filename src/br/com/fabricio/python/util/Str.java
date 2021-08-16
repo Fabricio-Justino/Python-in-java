@@ -141,22 +141,43 @@ public class Str implements EstractValue<String> {
 
 		return this.str.matches("[0-9]{1,}");
 	}
-	
+
+	/**
+	 * verifies the current string has the shape an email
+	 * 
+	 * @return returns true if the current string has a pattern for an email
+	 */
 	public boolean isEmail() {
 		return this.str.matches("[a-zA-Z.]{1,}[0-9]{1,}@[a-zA-Z]{1,}.com");
 	}
-	
-	public boolean isEmail(String ...ends) {
+
+	/**
+	 * verifies the current string has a shape of email and ends with at least one
+	 * "end" from the array of "ends"
+	 * 
+	 * @param ends: array of String that defines the behavior of end ex: (.com, .br)
+	 * @return true if the current string has a pattern for an email with end
+	 *         defined by ends[]
+	 */
+	public boolean isEmail(String... ends) {
 		Objects.requireNonNull(ends);
 		boolean n = false;
-		
-		for(String end : ends) {
+
+		for (String end : ends) {
 			n = n || this.str.matches("[a-zA-Z.]{1,}[0-9]{1,}@[a-zA-Z]{1,}%s".formatted(end));
 		}
-		
+
 		return n;
 	}
 
+	/**
+	 * 
+	 * searches for a string(findIn) the current string and counts how many times it
+	 * appears(occurrence)
+	 * 
+	 * @param findIn: String que sera o objeto de pesquisa na estring atual
+	 * @return number of occurrences defined by "findIn" in the current String
+	 */
 	public int count(String findIn) {
 		if (this.str.isBlank())
 			return -1;
@@ -169,7 +190,7 @@ public class Str implements EstractValue<String> {
 
 		int cont = 0;
 		String temp = "";
-		
+
 		for (int i = 0; i < this.str.length(); i++) {
 			temp += this.str.charAt(i);
 			if (temp.length() == findIn.length()) {
@@ -182,17 +203,17 @@ public class Str implements EstractValue<String> {
 					temp = "";
 					i = -1;
 					this.str = (this.str.length() > 1) ? this.str.substring(1, this.str.length()) : this.str;
-					
-					if(this.str.length() <= 1) break;
+
+					if (this.str.length() <= 1)
+						break;
 				}
 			}
 
 		}
-		
+
 		return cont;
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		return this.str.hashCode();
@@ -214,7 +235,6 @@ public class Str implements EstractValue<String> {
 			return false;
 		return true;
 	}
-	
 
 	@Override
 	public String toString() {
@@ -225,7 +245,5 @@ public class Str implements EstractValue<String> {
 	public String valueOf() {
 		return this.str;
 	}
-
-	
 
 }

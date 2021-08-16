@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Input {
 	private String msg;
 	private boolean nextLine;
-
+	
+	
 	public Input(String msg) {
 		this.msg = msg;
 		this.nextLine = true;
