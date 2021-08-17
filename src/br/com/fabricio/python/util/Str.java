@@ -217,7 +217,15 @@ public class Str implements EstractValue<String> {
 
 		return cont;
 	}
-
+	
+	/**
+	 * return a Str class formated
+	 * 
+	 * @param args
+	 * @return return Str formatted with {} replaced by each arg in the sequence defined
+	 * 
+	 * @throws NumberExcedArgsException when quantity of {} isn't equal args length
+	 */
 	public Str format(Object... args) {
 		Objects.requireNonNull(args);
 
