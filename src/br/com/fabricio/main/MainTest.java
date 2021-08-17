@@ -23,7 +23,7 @@ public class MainTest {
 			
 			case 0 -> {Python.print("tchua volte sempre"); quit = !quit;}
 			
-			default -> Python.printw("Opção inválida!", "=+"); 
+			default -> Python.printw("Opção inválida!", "=+", true); 
 			}
 			
 		} while (!quit); 
