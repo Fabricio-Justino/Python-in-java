@@ -36,15 +36,16 @@ public class Str implements EstractValue<String> {
 	public Str capitalize() {
 		if (this.str.isBlank())
 			return new Str();
-
-		this.str = this.str.transform(newStr -> {
+		
+		String el;
+		el = this.str.transform(newStr -> {
 			char temp = newStr.toUpperCase().charAt(0);
 			String template = (newStr.length() > 1) ? temp + newStr.substring(1, newStr.length()) : temp + "";
 
 			return template;
 		});
 
-		return new Str(this.str);
+		return new Str(el);
 	}
 
 	/**
@@ -56,8 +57,9 @@ public class Str implements EstractValue<String> {
 	public Str title() {
 		if (this.str.isBlank())
 			return new Str();
-
-		this.str = this.str.transform(newJ -> {
+		
+		String el;
+		el = this.str.transform(newJ -> {
 			String arr[] = newJ.split("[ ]");
 			String completa = "";
 			for (String item : arr) {
@@ -73,7 +75,7 @@ public class Str implements EstractValue<String> {
 			return completa.trim();
 		});
 
-		return new Str(this.str);
+		return new Str(el);
 	}
 
 	/**
@@ -87,7 +89,8 @@ public class Str implements EstractValue<String> {
 		if (this.str.isBlank())
 			return new Str();
 
-		this.str = this.str.transform(newJ -> {
+		String el;
+		el = this.str.transform(newJ -> {
 			String arr[] = newJ.split(regex);
 			String completa = "";
 			for (String item : arr) {
@@ -103,7 +106,7 @@ public class Str implements EstractValue<String> {
 			return completa.trim();
 		});
 
-		return new Str(this.str);
+		return new Str(el);
 	}
 
 	/**
@@ -190,21 +193,22 @@ public class Str implements EstractValue<String> {
 
 		int cont = 0;
 		String temp = "";
+		String el = this.str + " ".repeat(findIn.length());
 
-		for (int i = 0; i < this.str.length(); i++) {
-			temp += this.str.charAt(i);
+		for (int i = 0; i < el.length(); i++) {
+			temp += el.charAt(i);
 			if (temp.length() == findIn.length()) {
 				if (temp.equals(findIn)) {
-					this.str = str.substring(findIn.length(), this.str.length());
+					el = el.substring(findIn.length(), el.length());
 					cont++;
 					temp = "";
 					i = -1;
 				} else {
 					temp = "";
 					i = -1;
-					this.str = (this.str.length() > 1) ? this.str.substring(1, this.str.length()) : this.str;
+					el = (el.length() > 1) ? el.substring(1, el.length()) : el;
 
-					if (this.str.length() <= 1)
+					if (el.length() <= 1)
 						break;
 				}
 			}
@@ -212,6 +216,31 @@ public class Str implements EstractValue<String> {
 		}
 
 		return cont;
+	}
+	
+	/**
+	 * return a Str class formated
+	 * 
+	 * @param args
+	 * @return return Str formatted with {} replaced by each arg in the sequence defined
+	 * 
+	 * @throws NumberExcedArgsException when quantity of {} isn't equal args length
+	 */
+	public Str format(Object... args) {
+		Objects.requireNonNull(args);
+
+		String el = this.str;
+
+		if (this.count("{}") != args.length) {
+			throw new NumberExcedArgsException(
+					new Throwable("Number of {} is %d, Number of args is %d".formatted(this.count("{}"), args.length)));
+		}
+
+		for (Object obj : args) {
+			el = el.replaceFirst("[{][}]", obj.toString());
+		}
+
+		return new Str(el);
 	}
 
 	@Override
