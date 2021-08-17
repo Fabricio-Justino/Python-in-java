@@ -11,6 +11,7 @@ public class MainTest {
 		
 		// escolha de atividade
 		int choise = -1;
+		boolean quit = false;
 		do {
 			ask();
 			
@@ -20,12 +21,12 @@ public class MainTest {
 			case 2 -> fibonacci();
 			case 3 -> average();
 			
-			case 0 -> Python.print("tchua volte sempre");
+			case 0 -> {Python.print("tchua volte sempre"); quit = !quit;}
 			
-			default -> Python.printf("{}{}\ndigite uma opção válida\n{}{}", "\n", "=+".repeat(15), "=+".repeat(15), "\n");
+			default -> Python.printw("Opção inválida!", "=+"); 
 			}
 			
-		} while (choise != 0); 
+		} while (!quit); 
 		
 		
 		
@@ -63,7 +64,8 @@ public class MainTest {
 		
 		double value = -2;
 		boolean quit = false;
-		List<Double> numbers = new ArrayList();
+		List<Double> numbers = new ArrayList<>();
+		
 		do {
 			value = Python.input("informe um valor: ", false).nextDouble();
 			numbers.add(value);
@@ -72,7 +74,7 @@ public class MainTest {
 		} while (!quit);
 		
 		value = numbers.stream().mapToDouble(Double::doubleValue).average().getAsDouble();
-		Python.printf("a medias dos valores {} é {}", numbers, value);
+		Python.printf("a média dos valores {} é {}", numbers, value);
 	}
 	
 	public static void ask() {
