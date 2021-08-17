@@ -9,27 +9,28 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		
+		
+	}
+	
+	public static void doWork() {
 		// escolha de atividade
-		int choise = -1;
-		boolean quit = false;
-		do {
-			ask();
-			
-			choise = Python.input(Python.str("o que voce deseja fazer: "), false).nextInt();
-			switch(choise) {
-			case 1 -> fatorial();
-			case 2 -> fibonacci();
-			case 3 -> average();
-			
-			case 0 -> {Python.print("tchua volte sempre"); quit = !quit;}
-			
-			default -> Python.printw("Opção inválida!", "=+", true); 
-			}
-			
-		} while (!quit); 
-		
-		
-		
+				int choise = -1;
+				boolean quit = false;
+				do {
+					ask();
+					
+					choise = Python.input(Python.str("o que voce deseja fazer: "), false).nextInt();
+					switch(choise) {
+					case 1 -> fatorial();
+					case 2 -> fibonacci();
+					case 3 -> average();
+					
+					case 0 -> {Python.print("tchua volte sempre"); quit = !quit;}
+					
+					default -> Python.printw("Opção inválida!", "=+", true); 
+					}
+					
+				} while (!quit); 
 	}
 	
 	public static void fatorial() {

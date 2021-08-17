@@ -1,4 +1,6 @@
-package br.com.fabricio.python.util;
+package br.com.fabricio.python.classes;
+
+import br.com.fabricio.python.util.EstractValue;
 
 public class Int implements EstractValue<Integer> {
 	private int value;

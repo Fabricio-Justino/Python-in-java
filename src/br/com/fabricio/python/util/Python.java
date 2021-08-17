@@ -3,6 +3,11 @@ package br.com.fabricio.python.util;
 import java.util.Objects;
 import java.util.Scanner;
 
+import br.com.fabricio.python.classes.Input;
+import br.com.fabricio.python.classes.Int;
+import br.com.fabricio.python.classes.Str;
+import br.com.fabricio.python.exception.NumberExcedArgsException;
+
 public class Python {
 
 	/**
