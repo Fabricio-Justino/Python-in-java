@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import br.com.fabricio.python.classes.Input;
 import br.com.fabricio.python.classes.Int;
+import br.com.fabricio.python.classes.Open;
+import br.com.fabricio.python.classes.Open.Type;
 import br.com.fabricio.python.classes.Str;
 import br.com.fabricio.python.exception.NumberExcedArgsException;
 
@@ -260,6 +262,35 @@ public class Python {
 		String result = new Scanner(System.in).nextLine();
 
 		return result;
+	}
+	
+	/**
+	 * 
+	 * @param path local or archive
+	 * @return class Open
+	 */
+	public static Open open(String path) {
+		return new Open(path);
+	}
+	
+	/**
+	 * 
+	 * @param path local or archive
+	 * @param type of open r(reader) or w(writer)
+	 * @return class Open
+	 */
+	public static Open open(String path, char type) {
+		return new Open(path, type);
+	}
+	
+	/**
+	 * 
+	 * @param path local or archive
+	 * @param type of Open Reader or Writer
+	 * @return class Open
+	 */
+	public static Open open(String path, Type type) {
+		return new Open(path, type);
 	}
 
 }
