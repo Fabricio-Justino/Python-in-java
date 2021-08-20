@@ -1,0 +1,4 @@
+nome;idade;sexo;profisao
+Fabricio;17;masculino;estudante
+Juliano;20;feminino;astronalta;
+Leon;28;masculino;youtuber
