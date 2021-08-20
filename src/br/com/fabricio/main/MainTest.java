@@ -1,5 +1,6 @@
 package br.com.fabricio.main;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import br.com.fabricio.python.util.Python;
 
 public class MainTest {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		doWork();
 	}
 
@@ -24,6 +25,7 @@ public class MainTest {
 			case 1 -> fatorial();
 			case 2 -> fibonacci();
 			case 3 -> average();
+			case 4 -> readText();
 
 			case 0 -> {
 				Python.print("tchua volte sempre");
@@ -65,7 +67,6 @@ public class MainTest {
 	}
 
 	public static void average() {
-
 		double value = -2;
 		boolean quit = false;
 		List<Double> numbers = new ArrayList<>();
@@ -73,7 +74,7 @@ public class MainTest {
 		do {
 			value = Python.input("informe um valor: ", false).nextDouble();
 			numbers.add(value);
-			quit = Python.inputs("deseja sair? [sim/não]").trim().equals("sim");
+			quit = Python.inputs("deseja sair? [s/n]").trim().equalsIgnoreCase("s");
 
 		} while (!quit);
 
@@ -81,11 +82,23 @@ public class MainTest {
 		Python.printf("a média dos valores {} é {}", numbers, value);
 	}
 
+	public static void readText() {
+		String n = Python.inputs("digite o caminho do texto: ");
+
+		try {
+			String[][] table = Python.open(n).makeTable(";");
+
+			Python.printTable(table);
+		} catch (FileNotFoundException e) {
+			Python.print("arquivo não encontrado");
+		}
+	}
+
 	public static void ask() {
 		int cont = 0;
-		String options = "sair fatorial fibonacci média";
+		String options = "sair%fatorial%fibonacci%média%ler texto";
 
-		for (String option : options.split("[ ]")) {
+		for (String option : options.split("[%]")) {
 			Python.printf("[{}] - {}", cont, option);
 			cont++;
 		}

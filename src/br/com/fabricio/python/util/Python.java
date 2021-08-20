@@ -33,6 +33,26 @@ public class Python {
 	}
 
 	/**
+	 * 
+	 * @param <T>
+	 * @param el  lement to be printed
+	 * @param end end with an {@code end}
+	 */
+	public static <T> void print(T el, String end) {
+		System.out.print(el + end);
+	}
+
+	/**
+	 * 
+	 * @param <T>
+	 * @param el  lement to be printed
+	 * @param end end with an {@code end}
+	 */
+	public static <T> void print(T el, Str end) {
+		System.out.print(el + end.valueOf());
+	}
+
+	/**
 	 * print on console view an el wrapped by wrapper
 	 * 
 	 * @param <T>
@@ -128,6 +148,47 @@ public class Python {
 		}
 
 		printf("\n{}\n{}\n{}\n", wrapper, el, wrapper);
+	}
+
+	/**
+	 * print a table of values in two-dimensional array
+	 * 
+	 * @param array an object that will be printed
+	 */
+	public static void printTable(Object[][] array) {
+		String el = "";
+		for (int row = 0; row < array.length; row++) {
+			for (int col = 0; col < array[row].length; col++) {
+				if (col == 0) {
+					el += "| " + array[row][col].toString() + " |";
+				} else {
+					el += " " + array[row][col].toString() + " |";
+				}
+			}
+			printw(el, false);
+			el = "";
+		}
+	}
+
+	/**
+	 * print a table of values in two-dimensional array
+	 * 
+	 * @param array   array an object that will be printed
+	 * @param wrapper formatter of lines table
+	 */
+	public static void printTable(Object[][] array, String wrapper) {
+		String el = "";
+		for (int row = 0; row < array.length; row++) {
+			for (int col = 0; col < array[row].length; col++) {
+				if (col == 0) {
+					el += "| " + array[row][col].toString() + " | ";
+				} else {
+					el += " " + array[row][col].toString() + " | ";
+				}
+			}
+			printw(el, wrapper, false);
+			el = "";
+		}
 	}
 
 	/**
@@ -263,7 +324,7 @@ public class Python {
 
 		return result;
 	}
-	
+
 	/**
 	 * 
 	 * @param path local or archive
@@ -272,7 +333,7 @@ public class Python {
 	public static Open open(String path) {
 		return new Open(path);
 	}
-	
+
 	/**
 	 * 
 	 * @param path local or archive
@@ -282,7 +343,7 @@ public class Python {
 	public static Open open(String path, char type) {
 		return new Open(path, type);
 	}
-	
+
 	/**
 	 * 
 	 * @param path local or archive
@@ -290,6 +351,35 @@ public class Python {
 	 * @return class Open
 	 */
 	public static Open open(String path, Type type) {
+		return new Open(path, type);
+	}
+
+	/**
+	 * 
+	 * @param path local or archive
+	 * @return class Open
+	 */
+	public static Open open(Str path) {
+		return new Open(path);
+	}
+
+	/**
+	 * 
+	 * @param path local or archive
+	 * @param type of open r(reader) or w(writer)
+	 * @return class Open
+	 */
+	public static Open open(Str path, char type) {
+		return new Open(path, type);
+	}
+
+	/**
+	 * 
+	 * @param path local or archive
+	 * @param type of Open Reader or Writer
+	 * @return class Open
+	 */
+	public static Open open(Str path, Type type) {
 		return new Open(path, type);
 	}
 
