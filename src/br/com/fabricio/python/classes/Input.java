@@ -1,4 +1,4 @@
-package br.com.fabricio.python.util;
+package br.com.fabricio.python.classes;
 
 import java.util.Scanner;
 

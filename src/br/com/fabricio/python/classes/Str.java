@@ -1,6 +1,9 @@
-package br.com.fabricio.python.util;
+package br.com.fabricio.python.classes;
 
 import java.util.Objects;
+
+import br.com.fabricio.python.exception.NumberExcedArgsException;
+import br.com.fabricio.python.util.EstractValue;
 
 /**
  * this class is a copy of Python str with your method and anymore make by

@@ -1,4 +1,4 @@
-package br.com.fabricio.python.util;
+package br.com.fabricio.python.exception;
 
 public class NumberExcedArgsException extends RuntimeException {
 	
