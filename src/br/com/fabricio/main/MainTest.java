@@ -13,13 +13,17 @@ public class MainTest {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		//doWork();
 		int v = 5;
-		String arr[] = {"fabricio", "debora", "lasco", "amanda" ,"yuri" ,"michele"};
+		ArrayList<Integer> arr = new ArrayList<>();
+		
+		
+		for(int i = 1; i < 11; i++) {
+			arr.add(i);
+		}
 		
 		
 		
-		Python.print(Arrays.toString(arr), "\n");
-		Python.sort(arr);
-		Python.print(Arrays.toString(arr), "\n");
+		
+		Python.print(Python.sum(arr));
 		
 	}
 
@@ -88,7 +92,7 @@ public class MainTest {
 
 		} while (!quit);
 
-		value = numbers.stream().mapToDouble(Double::doubleValue).average().getAsDouble();
+		value = Python.average(numbers);
 		Python.printf("a média dos valores {} é {}", numbers, value);
 	}
 

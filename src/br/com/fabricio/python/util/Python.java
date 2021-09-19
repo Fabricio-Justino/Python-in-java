@@ -1,5 +1,6 @@
 package br.com.fabricio.python.util;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -384,8 +385,7 @@ public class Python {
 	public static Open open(Str path, Type type) {
 		return new Open(path, type);
 	}
-	
-	
+
 	/**
 	 * this method sort your elements
 	 * 
@@ -393,35 +393,75 @@ public class Python {
 	 * @param array to be rodened
 	 * 
 	 */
-	public static<T extends Comparable<? super T>> void sort(T[] array) {
-		
-		for(int i = 0; i < array.length; i++) {
-			if(i < array.length-1 && array[i].compareTo(array[i + 1]) >= 1) {
-				swap(array, i, i+1);
+	public static <T extends Comparable<? super T>> void sort(T[] array) {
+
+		for (int i = 0; i < array.length; i++) {
+			if (i < array.length - 1 && array[i].compareTo(array[i + 1]) >= 1) {
+				swap(array, i, i + 1);
 				i = -1;
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * this method shifts the position of the first to the second indexes given
 	 * 
 	 * @param <T>
-	 * @param array to shift it position
+	 * @param array  to shift it position
 	 * @param index1 fisrt index of element
-	 * @param index2 second index  of element
+	 * @param index2 second index of element
 	 */
-	public static <T> void swap(T array[], int index1, int index2) { 
-		if((index1 >= array.length || index1 < 0) || (index2 >= array.length || index2 < 0)) {
+	public static <T> void swap(T array[], int index1, int index2) {
+		if ((index1 >= array.length || index1 < 0) || (index2 >= array.length || index2 < 0)) {
 			throw new NoSuchElementException();
 		}
-		
+
 		T el = array[index1];
 		array[index1] = array[index2];
 		array[index2] = el;
 	}
 	
+	/**
+	 * this method made the sum of all numbers into the array, then return it as double
+	 * 
+	 * @param array that will be used to make the sum
+	 * @return the sum of all numbers into the array
+	 */
+	public static <T extends Number> double sum(T[] array) {
+		return Arrays.asList(array).stream().mapToDouble(T::doubleValue).sum();
+	}
+	
+	/**
+	 * this method made the sum of all numbers into the array, then return it as double
+	 * 
+	 * @param array that will be used to make the sum
+	 * @return the sum of all numbers into the array
+	 */
+	public static <T extends Number> double sum(Collection<T> array) {
+		return array.stream().mapToDouble(T::doubleValue).sum();
+	}
+	
+	/**
+	 * this method made the average of the numbers into the array, then return it as double
+	 * 
+	 * @param array that will be used to make the average numbers
+	 * @return the average of all numbers into the array
+	 */
+	public static <T extends Number> double average(T[] array) {
+		return Arrays.asList(array).stream().mapToDouble(T::doubleValue).average().getAsDouble();
+	}
+	
+	/**
+	 * this method made the average of the numbers into the array, then return it as double
+	 * 
+	 * @param array that will be used to make the average numbers
+	 * @return the average of all numbers into the array
+	 */
+	public static <T extends Number> double average(Collection<T> array) {
+		return array.stream().mapToDouble(T::doubleValue).average().getAsDouble();
+	}
+
 	/**
 	 * 
 	 * @param <T>
@@ -431,7 +471,7 @@ public class Python {
 	public static <T> int len(T[] array) {
 		return array.length;
 	}
-	
+
 	/**
 	 * 
 	 * @param <T>
@@ -441,7 +481,7 @@ public class Python {
 	public static <T> int len(Collection<? super T> array) {
 		return array.size();
 	}
-	
+
 	/**
 	 * 
 	 * @param <T>
@@ -451,6 +491,5 @@ public class Python {
 	public static int len(String string) {
 		return string.length();
 	}
-	
 
 }
