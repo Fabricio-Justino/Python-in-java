@@ -3,6 +3,7 @@ package br.com.fabricio.main;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import br.com.fabricio.python.util.Python;
@@ -10,7 +11,16 @@ import br.com.fabricio.python.util.Python;
 public class MainTest {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		doWork();
+		//doWork();
+		int v = 5;
+		String arr[] = {"fabricio", "debora", "lasco", "amanda" ,"yuri" ,"michele"};
+		
+		
+		
+		Python.print(Arrays.toString(arr), "\n");
+		Python.sort(arr);
+		Python.print(Arrays.toString(arr), "\n");
+		
 	}
 
 	public static void doWork() {

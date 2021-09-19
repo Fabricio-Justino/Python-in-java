@@ -1,5 +1,6 @@
 package br.com.fabricio.python.util;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -381,6 +382,36 @@ public class Python {
 	 */
 	public static Open open(Str path, Type type) {
 		return new Open(path, type);
+	}
+	
+	
+	public static<T extends Comparable<? super T>> void sort(T[] array) {
+		
+		for(int i = 0; i < array.length; i++) {
+			if(i < array.length-1 && array[i].compareTo(array[i + 1]) >= 1) {
+				swap(array, i, i+1);
+				i = -1;
+			}
+		}
+		
+	}
+	
+	/**
+	 * this method change the posi
+	 * 
+	 * @param <T>
+	 * @param array to shift it position
+	 * @param index1 fisrt index of element
+	 * @param index2 second index  of element
+	 */
+	public static <T> void swap(T array[], int index1, int index2) { 
+		if((index1 >= array.length || index1 < 0) || (index2 >= array.length || index2 < 0)) {
+			throw new NoSuchElementException();
+		}
+		
+		T el = array[index1];
+		array[index1] = array[index2];
+		array[index2] = el;
 	}
 
 }
