@@ -1,5 +1,6 @@
 package br.com.fabricio.python.util;
 
+import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -385,6 +386,13 @@ public class Python {
 	}
 	
 	
+	/**
+	 * this method sort your elements
+	 * 
+	 * @param <T>
+	 * @param array to be rodened
+	 * 
+	 */
 	public static<T extends Comparable<? super T>> void sort(T[] array) {
 		
 		for(int i = 0; i < array.length; i++) {
@@ -397,7 +405,7 @@ public class Python {
 	}
 	
 	/**
-	 * this method change the posi
+	 * this method shifts the position of the first to the second indexes given
 	 * 
 	 * @param <T>
 	 * @param array to shift it position
@@ -413,5 +421,36 @@ public class Python {
 		array[index1] = array[index2];
 		array[index2] = el;
 	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @return size of array
+	 */
+	public static <T> int len(T[] array) {
+		return array.length;
+	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @return size of array
+	 */
+	public static <T> int len(Collection<? super T> array) {
+		return array.size();
+	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param String
+	 * @return length of the Strign
+	 */
+	public static int len(String string) {
+		return string.length();
+	}
+	
 
 }
