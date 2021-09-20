@@ -2,6 +2,7 @@ package br.com.fabricio.python.util;
 
 import java.util.Arrays;
 import java.util.Collection;
+
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -394,7 +395,6 @@ public class Python {
 	 * 
 	 */
 	public static <T extends Comparable<? super T>> void sort(T[] array) {
-
 		for (int i = 0; i < array.length; i++) {
 			if (i < array.length - 1 && array[i].compareTo(array[i + 1]) >= 1) {
 				swap(array, i, i + 1);
@@ -403,6 +403,109 @@ public class Python {
 		}
 
 	}
+	
+	public static <T extends Comparable<? super T>> void quicksort(T[] array) {
+		Objects.requireNonNull(array);		
+		if(len(array) <= 1) {
+			return;
+		}
+		
+		quicksort(array, 0, array.length-1);				
+	}
+	
+	/**
+	 * this is the true core of quicksort
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param start
+	 * @param end
+	 */
+	private static <T extends Comparable<? super T>> void quicksort(T[] array, int start, int end) {
+		if(start > end) {
+			return;
+		}
+		
+		int pivot = partition(array, start, end);
+		quicksort(array, start, pivot-1);
+		quicksort(array, pivot+1, end);
+	}
+	
+	/**
+	 * this method is auxiliar to do the partition of quiksort
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	private static <T extends Comparable<? super T>> int partition(T[] array, int start, int end) {
+		T pivot = array[end];
+		int j = start;	
+		
+		for(int i = start; i < end; i++) {
+			if(array[i].compareTo(pivot) < 0) {
+				swap(array, i, j);
+				j++;
+			} 
+		}
+		
+		swap(array, j, end);
+		return j;
+	}
+	
+	public static <T> void quicksort(T[] array, Comparator<? super T> comparator) {
+		Objects.requireNonNull(array);		
+		if(len(array) <= 1) {
+			return;
+		}
+		
+		quicksort(array, 0, array.length-1, comparator);				
+	}
+	
+	/**
+	 * this is the true core of quicksort
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param start
+	 * @param end
+	 */
+	private static <T> void quicksort(T[] array, int start, int end,  Comparator<? super T> comparator) {
+		if(start > end) {
+			return;
+		}
+		
+		int pivot = partition(array, start, end, comparator);
+		quicksort(array, start, pivot-1, comparator);
+		quicksort(array, pivot+1, end, comparator);
+	}
+	
+	/**
+	 * this method is auxiliar to do the partition of quiksort
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	private static <T> int partition(T[] array, int start, int end,  Comparator<? super T> comparetor) {
+		T pivot = array[end];
+		int j = start;	
+		for(int i = start; i < end; i++) {
+			if(comparetor.compareTo(array[i], pivot) < 0) {
+				swap(array, i, j);
+				j++;
+			} 
+		}
+		
+		swap(array, j, end);
+		return j;
+	}
+	
+	
 
 	/**
 	 * this method shifts the position of the first to the second indexes given
@@ -415,6 +518,10 @@ public class Python {
 	public static <T> void swap(T array[], int index1, int index2) {
 		if ((index1 >= array.length || index1 < 0) || (index2 >= array.length || index2 < 0)) {
 			throw new NoSuchElementException();
+		}
+		
+		if(index1 == index2) {
+			return;
 		}
 
 		T el = array[index1];

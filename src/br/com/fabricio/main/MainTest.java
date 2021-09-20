@@ -11,20 +11,7 @@ import br.com.fabricio.python.util.Python;
 public class MainTest {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		//doWork();
-		int v = 5;
-		ArrayList<Integer> arr = new ArrayList<>();
-		
-		
-		for(int i = 1; i < 11; i++) {
-			arr.add(i);
-		}
-		
-		
-		
-		
-		Python.print(Python.sum(arr));
-		
+		doWork();
 	}
 
 	public static void doWork() {
