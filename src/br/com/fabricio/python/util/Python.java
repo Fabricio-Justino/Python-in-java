@@ -404,6 +404,23 @@ public class Python {
 
 	}
 	
+	/**
+	 * this method sort your elements
+	 * 
+	 * @param <T>
+	 * @param array to be rodened
+	 * 
+	 */
+	public static <T> void sort(T[] array, Comparator<? super T> comparator) {
+		for (int i = 0; i < array.length; i++) {
+			if (i < array.length - 1 && comparator.compareTo(array[i], array[i+1]) < 0) {
+				swap(array, i, i + 1);
+				i = -1;
+			}
+		}
+
+	}
+	
 	public static <T extends Comparable<? super T>> void quicksort(T[] array) {
 		Objects.requireNonNull(array);		
 		if(len(array) <= 1) {
