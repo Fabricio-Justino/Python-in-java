@@ -3,6 +3,7 @@ package br.com.fabricio.main;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import br.com.fabricio.python.util.Python;
@@ -78,7 +79,7 @@ public class MainTest {
 
 		} while (!quit);
 
-		value = numbers.stream().mapToDouble(Double::doubleValue).average().getAsDouble();
+		value = Python.average(numbers);
 		Python.printf("a média dos valores {} é {}", numbers, value);
 	}
 
